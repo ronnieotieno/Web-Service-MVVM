@@ -5,6 +5,11 @@ import android.os.AsyncTask;
 
 import androidx.lifecycle.LiveData;
 
+import com.example.webservicewitharch.data.PicDao;
+import com.example.webservicewitharch.data.PictureDataBase;
+import com.example.webservicewitharch.models.Pictures;
+
+import java.util.Arrays;
 import java.util.List;
 
 public class PicsRepository {
@@ -35,7 +40,7 @@ public class PicsRepository {
 
         @Override
         protected Void doInBackground(Pictures... pictures) {
-            picDao.insert(pictures[0]);
+            picDao.insert(Arrays.asList(pictures));
             return null;
         }
     }
