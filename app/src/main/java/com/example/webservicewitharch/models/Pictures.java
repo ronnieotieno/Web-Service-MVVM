@@ -1,5 +1,7 @@
-package com.example.webservicewitharch;
+package com.example.webservicewitharch.models;
 
+import androidx.annotation.NonNull;
+import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
@@ -7,10 +9,13 @@ import androidx.room.PrimaryKey;
 public class Pictures {
 
     @PrimaryKey(autoGenerate = true)
-    int id;
-    String mImageUrl;
-    String mCreator;
-    int mLikes;
+    private int id;
+    @ColumnInfo(name = "url")
+    public String mImageUrl;
+    @ColumnInfo(name = "creator")
+    public String mCreator;
+    @ColumnInfo(name = "likes")
+    public int mLikes;
 
     public Pictures(String mImageUrl, String mCreator, int mLikes) {
         this.mImageUrl = mImageUrl;
@@ -38,4 +43,13 @@ public class Pictures {
         return mLikes;
     }
 
+    @NonNull
+    @Override
+    public String toString() {
+        return "Pictures{" +
+                "mImageUrl='" + mImageUrl + '\'' +
+                ", mCreator='" + mCreator + '\'' +
+                ", mLikes=" + mLikes +
+                '}';
+    }
 }

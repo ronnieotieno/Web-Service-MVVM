@@ -1,4 +1,4 @@
-package com.example.webservicewitharch;
+package com.example.webservicewitharch.ui;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +9,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.webservicewitharch.R;
+import com.example.webservicewitharch.models.Pictures;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -16,7 +18,7 @@ import java.util.List;
 
 public class PicsAdapter extends RecyclerView.Adapter<PicsAdapter.picHolder> {
 
-    List<Pictures> pictures = new ArrayList<>();
+    private List<Pictures> pictures = new ArrayList<>();
 
     @NonNull
     @Override
@@ -31,7 +33,8 @@ public class PicsAdapter extends RecyclerView.Adapter<PicsAdapter.picHolder> {
         Pictures currentPics = pictures.get(position);
         holder.creator.setText(currentPics.getmCreator());
         int likeCount = currentPics.getmLikes();
-        holder.likes.setText("Likes: " + likeCount);
+        String likesPlaceHolder = "Likes: ";
+        holder.likes.setText(likesPlaceHolder.concat(String.valueOf(likeCount)));
         Picasso.get().load(currentPics.getmImageUrl()).fit().centerInside().into(holder.imageView);
 
     }
@@ -41,7 +44,7 @@ public class PicsAdapter extends RecyclerView.Adapter<PicsAdapter.picHolder> {
         return pictures.size();
     }
 
-    public void setPics(List<Pictures> pictures) {
+    void setPics(List<Pictures> pictures) {
         this.pictures = pictures;
         notifyDataSetChanged();
     }
@@ -52,7 +55,7 @@ public class PicsAdapter extends RecyclerView.Adapter<PicsAdapter.picHolder> {
         ImageView imageView;
         TextView creator, likes;
 
-        public picHolder(@NonNull View itemView) {
+        picHolder(@NonNull View itemView) {
             super(itemView);
 
             imageView = itemView.findViewById(R.id.image_view);
