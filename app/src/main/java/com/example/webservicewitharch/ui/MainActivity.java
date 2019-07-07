@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
         picsViewModel.getAllPictures().observe(this, adapter::setPics);
 
 
-        adapter.setOnItemClickListner(pictures -> {
+        adapter.setOnItemClickListener(pictures -> {
 
             Intent detailIntent = new Intent(this, DetailActivity.class);
 

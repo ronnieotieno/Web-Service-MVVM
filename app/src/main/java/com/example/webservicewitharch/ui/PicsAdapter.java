@@ -27,7 +27,7 @@ public class PicsAdapter extends RecyclerView.Adapter<PicsAdapter.picHolder> {
         void onItemClick(Pictures pictures);
     }
 
-    public void setOnItemClickListner(onItemClickListener listener) {
+    public void setOnItemClickListener(onItemClickListener listener) {
         mListener = listener;
 
     }
