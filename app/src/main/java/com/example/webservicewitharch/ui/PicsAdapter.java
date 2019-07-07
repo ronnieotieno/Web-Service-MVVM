@@ -20,6 +20,18 @@ public class PicsAdapter extends RecyclerView.Adapter<PicsAdapter.picHolder> {
 
     private List<Pictures> pictures = new ArrayList<>();
 
+    private onItemClickListener mListener;
+
+
+    public interface onItemClickListener {
+        void onItemClick(Pictures pictures);
+    }
+
+    public void setOnItemClickListner(onItemClickListener listener) {
+        mListener = listener;
+
+    }
+
     @NonNull
     @Override
     public picHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -61,6 +73,15 @@ public class PicsAdapter extends RecyclerView.Adapter<PicsAdapter.picHolder> {
             imageView = itemView.findViewById(R.id.image_view);
             creator = itemView.findViewById(R.id.text_view_creator);
             likes = itemView.findViewById(R.id.text_view_downloads);
+
+            itemView.setOnClickListener(v -> {
+                if (mListener != null) {
+                    int position = getAdapterPosition();
+                    if (position != RecyclerView.NO_POSITION) {
+                        mListener.onItemClick(pictures.get(position));
+                    }
+                }
+            });
         }
     }
 }

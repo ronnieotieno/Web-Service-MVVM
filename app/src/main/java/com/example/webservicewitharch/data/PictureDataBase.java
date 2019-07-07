@@ -25,6 +25,8 @@ import java.util.List;
 @Database(entities = Pictures.class, version = 2, exportSchema = false)
 public abstract class PictureDataBase extends RoomDatabase {
 
+    private static final String BASE_URL = "https://pixabay.com/api/?key=5303976-fd6581ad4ac165d1b75cc15b3&q=kitten&image_type=photo&pretty=true";
+
     private static PictureDataBase instance;
 
     public abstract PicDao picDao();
@@ -52,8 +54,7 @@ public abstract class PictureDataBase extends RoomDatabase {
     private static void getData(Context context) {
         List<Pictures> mPictureList = new ArrayList<>();
         RequestQueue mRequestQueue = Volley.newRequestQueue(context);
-        String url = "https://pixabay.com/api/?key=5303976-fd6581ad4ac165d1b75cc15b3&q=kitten&image_type=photo&pretty=true";
-        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null, response -> {
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, BASE_URL, null, response -> {
             try {
                 JSONArray jsonArray = response.getJSONArray("hits");
                 for (int i = 0; i < jsonArray.length(); i++) {

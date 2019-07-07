@@ -19,6 +19,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".web" />
+        <activity android:name=".ui.DetailActivity" />
     </application>
 
 </manifest>
